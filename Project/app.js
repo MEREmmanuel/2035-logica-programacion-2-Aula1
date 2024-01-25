@@ -1,9 +1,19 @@
-let title = document.querySelector('h1');
-title.innerHTML = 'Guess de number!';
+let secretNumber = generateSecretNumber();
 
-let paragraph = document.querySelector('p');
-paragraph.innerHTML = 'Enter a number from 1 to 10:'
-
-function userAttempt(){
-    alert('Function is work!')
+function assignText(element, text) {
+  let title = document.querySelector(element);
+  title.innerHTML = text;
+  return;
 }
+
+function verifyAttempt() {
+  let userNumber = parseInt(document.getElementById('userValue').value);
+  return;
+}
+
+function generateSecretNumber() {
+  return Math.floor(Math.random() * 10) + 1;
+}
+
+assignText("h1", "Guess the number!");
+assignText("p", "Enter a number from 1 to 10:");
