@@ -1,4 +1,5 @@
 let secretNumber = generateSecretNumber();
+let attempts = 1;
 
 function assignText(element, text) {
   let title = document.querySelector(element);
@@ -7,7 +8,22 @@ function assignText(element, text) {
 }
 
 function verifyAttempt() {
-  let userNumber = parseInt(document.getElementById('userValue').value);
+  let userNumber = parseInt(document.getElementById("userValue").value);
+  if (userNumber === secretNumber) {
+    assignText(
+      "p",
+      `Yout got the secret number in ${attempts} ${
+        attempts === 1 ? "attempt" : "attempts"
+      }!`
+    );
+  } else {
+    if (userNumber > secretNumber) {
+      assignText("p", "The secret number is less");
+    } else {
+      assignText("p", "The secret number is greater");
+    }
+    attempts++;
+  }
   return;
 }
 
