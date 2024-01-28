@@ -1,5 +1,7 @@
 let secretNumber = 0;
 let attempts = 0;
+let secretNumbersList = [];
+let maximunRange = 10;
 
 function assignText(element, text) {
   let title = document.querySelector(element);
@@ -34,12 +36,24 @@ function cleanBox() {
 }
 
 function generateSecretNumber() {
-  return Math.floor(Math.random() * 10) + 1;
+  secretNumber = Math.floor(Math.random() * maximunRange) + 1;
+  console.log(secretNumber);
+  console.log(secretNumbersList);
+  if (secretNumbersList.length == maximunRange) {
+    assignText("p", "All the numbers have already been drawn");
+  } else {
+    if (secretNumbersList.includes(secretNumber)) {
+      return generateSecretNumber();
+    } else {
+      secretNumbersList.push(secretNumber);
+      return secretNumber;
+    }
+  }
 }
 
 function initialConditions() {
   assignText("h1", "Guess the number!");
-  assignText("p", "Enter a number from 1 to 10:");
+  assignText("p", `Enter a number from 1 to ${maximunRange}:`);
   secretNumber = generateSecretNumber();
   attempts = 1;
 }
@@ -47,7 +61,7 @@ function initialConditions() {
 function gameReset() {
   cleanBox();
   initialConditions();
-  document.querySelector('#reiniciar').setAttribute('disabled',true);
+  document.querySelector("#reiniciar").setAttribute("disabled", true);
 }
 
 initialConditions();
